@@ -14,7 +14,7 @@ authors = [{ name = "Nicholas Pung", email = "nypung@outlook.com" }]
 dependencies = ["numpy"]
 
 [project.optional-dependencies]
-dev = ["pytest", "flake8"]
+dev = ["pytest", "pytest-cov", "flake8"]
 
 [tool.setup.packages.find]
 where = ["src"]
