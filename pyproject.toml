@@ -15,3 +15,6 @@ dependencies = ["numpy"]
 
 [project.optional-dependencies]
 dev = ["pytest", "flake8"]
+
+[tool.setup.packages.find]
+where = ["src"]
