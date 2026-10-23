@@ -68,4 +68,4 @@ class TestMotionMatrices:
         """Check both generated matrices are both of dtype float"""
         F, B = motion_matrices(0.5)
 
-        assert F.dtype, B.dtype == float64
+        assert F.dtype, B.dtype == "float64"
