@@ -63,3 +63,9 @@ class TestMotionMatrices:
 
         assert F.shape == (4, 4)
         assert B.shape == (4, 2)
+
+    def test_matrix_type(self):
+        """Check both generated matrices are both of dtype float"""
+        F, B = motion_matrices(0.5)
+
+        assert F.dtype, B.dtype == float64
