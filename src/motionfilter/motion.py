@@ -1,7 +1,7 @@
 import numpy as np
 
 
-__all__ = ["motion_matrices"]
+__all__ = ["motion_matrices", "generate_acceleration_noise"]
 
 
 def motion_matrices(dt):
@@ -53,3 +53,10 @@ def motion_matrices(dt):
     B[change_rows_B_velocity, change_cols_B_velocity] = dt
 
     return F, B
+
+
+def generate_acceleration_noise(acceleration_std, rng):
+    """Generate a random acceleration noise vector of shape (2,1) using a
+    normal random distribution around mean 0 and a given standard deviation."""
+
+    return rng.normal(0, acceleration_std, size=(2,))

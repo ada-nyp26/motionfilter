@@ -2,6 +2,7 @@ import numpy as np
 import pytest
 
 from motionfilter import motion_matrices
+from motionfilter import generate_acceleration_noise
 
 
 class TestMotionMatrices:
