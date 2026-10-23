@@ -66,6 +66,20 @@ class TestMotionMatrices:
 
     def test_matrix_type(self):
         """Check both generated matrices are both of dtype float"""
+
         F, B = motion_matrices(0.5)
 
         assert F.dtype, B.dtype == "float64"
+
+    @pytest.mark.parametrize("dt", [
+        0,
+        np.inf,
+        -np.inf,
+        -1,
+        np.nan,
+        [1, 2, 3],
+    ])
+    def test_invalid_dt(self, dt):
+        """Check dt value error is raised if dt is invalid"""
+        with pytest.raises(ValueError):
+            motion_matrices(dt)
