@@ -2,6 +2,7 @@ import numpy as np
 import pytest
 
 from motionfilter import simulate_motion
+import motionfilter.simulate as simulation
 
 
 class TestSimulateMotion:
@@ -45,6 +46,44 @@ class TestSimulateMotion:
         """Check simulate_motion() function gives correct results"""
 
         # check if correct without acceleration implemented
-        true_states = simulate_motion(dt, n_steps, initial_state)
+        vehicle_history = simulate_motion(dt, n_steps, initial_state,
+                                          accelerations=np.array([0, 0]),
+                                          acceleration_std=0.0)
 
-        assert np.array_equal(true_states, expected_states)
+        assert np.array_equal(vehicle_history, expected_states)
+
+    # monkeypatch used here to skip generate_acceleration_noise and use
+    # predeterminted acceleration noise values.:w
+
+    def test_simulate_motion_with_noise(self, monkeypatch):
+        """Test simulation with predetermined acceleration noise."""
+
+        noise1 = np.array([0.5, -0.5])
+        noise2 = np.array([-0.5, 0.5])
+
+        noises = iter([noise1, noise2])
+
+        def fake_noise_generator(acceleration_std, rng):
+            return next(noises)
+
+        monkeypatch.setattr(
+            simulation,
+            "generate_acceleration_noise",
+            fake_noise_generator
+        )
+
+        expected_states = np.array([
+            [0, 1, 3, 10],
+            [11, 24, 8, 13],
+            [30, 55, 11, 18]
+        ], dtype=float)
+
+        actual_states = simulate_motion(
+            dt=2.0,
+            n_steps=2,
+            initial_state=np.array([0, 1, 3, 10]),
+            acceleration_std=0.5,
+            accelerations=np.array([2, 2]),
+        )
+
+        np.testing.assert_allclose(actual_states, expected_states)
