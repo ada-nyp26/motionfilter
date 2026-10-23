@@ -1,3 +1,5 @@
 .idea/
 motionfilter.egg-info/
 tests/__pycache__/*
+__pycache__/
+*.pyc

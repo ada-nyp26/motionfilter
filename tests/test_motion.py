@@ -37,6 +37,6 @@ class TestMotionMatrices:
         """Check dt values are correctly used and output matrices are
         correct"""
 
-        F, _ = motion_matrices(dt)
+        F = motion_matrices(dt)
 
         assert np.array_equal(F, expected_F)
