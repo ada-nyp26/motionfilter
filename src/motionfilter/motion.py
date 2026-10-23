@@ -43,9 +43,14 @@ def motion_matrices(dt):
 
     B = np.zeros((4, 2), dtype=float)
 
-    change_rows_B = [0, 1, 2, 3]
-    change_cols_B = [0, 1, 0, 1]
+    change_rows_B_position = [0, 1]
+    change_cols_B_position = [0, 1]
 
-    B[change_rows_B, change_cols_B] = dt
+    change_rows_B_velocity = [2, 3]
+    change_cols_B_velocity = [0, 1]
+
+    B[change_rows_B_position, change_cols_B_position] = 0.5 * (dt ** 2)
+    B[change_rows_B_velocity, change_cols_B_velocity] = dt
+
 
     return F, B

@@ -11,20 +11,20 @@ class TestMotionMatrices:
                              [
                                  (
                                      # dt 1
-                                     2.0,
+                                     3.0,
                                      # expected_F matrix 1
                                      np.array([
-                                         [1, 0, 2, 0],
-                                         [0, 1, 0, 2],
+                                         [1, 0, 3, 0],
+                                         [0, 1, 0, 3],
                                          [0, 0, 1, 0],
                                          [0, 0, 0, 1]
                                      ]),
                                      # expected_B matrix 1
                                      np.array([
-                                         [2, 0],
-                                         [0, 2],
-                                         [2, 0],
-                                         [0, 2]
+                                         [4.5, 0],
+                                         [0, 4.5,],
+                                         [3, 0],
+                                         [0, 3]
                                      ])
                                  ),
 
@@ -40,8 +40,8 @@ class TestMotionMatrices:
                                      ]),
                                      # expected_B matrix 2
                                      np.array([
-                                         [1, 0],
-                                         [0, 1],
+                                         [0.5, 0],
+                                         [0, 0.5],
                                          [1, 0],
                                          [0, 1]
                                      ])
