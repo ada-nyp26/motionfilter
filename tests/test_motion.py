@@ -47,7 +47,7 @@ class TestMotionMatrices:
                                      ])
                                  ),
                              ])
-    def test_motion_matrices(self, dt, expected_F, expected_B):
+    def test_matrix_generation(self, dt, expected_F, expected_B):
         """Check dt values are correctly used and output matrices are
         correct"""
 
@@ -55,3 +55,11 @@ class TestMotionMatrices:
 
         assert np.array_equal(F, expected_F), "F matrix does not match"
         assert np.array_equal(B, expected_B), "B matrix does not match"
+
+    def test_matrix_shape(self):
+        """Check both F and B matrix shapes are correct"""
+
+        F, B = motion_matrices(0.5)
+
+        assert F.shape == (4, 4)
+        assert B.shape == (4, 2)
