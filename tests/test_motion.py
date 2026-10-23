@@ -47,7 +47,7 @@ class TestMotionMatrices:
                                      ])
                                  ),
                              ])
-    def test_motion_matrices(self, dt, expected_F):
+    def test_motion_matrices(self, dt, expected_F, expected_B):
         """Check dt values are correctly used and output matrices are
         correct"""
 

@@ -15,16 +15,27 @@ def motion_matrices(dt):
 
     Returns
     -------
-    numpy.ndarray
+    F: numpy.ndarray
         Shape (4,4) identity matrix with indices [0][2] and [1][3] replaced
         by dt.
+
+    B: numpy.ndarray
+        Shape (4,2) zero matrix with indicies [0][0], [1][1], [2][0], [3][1] to
+        be replaced by dt.
     """
 
     F = np.identity(4)
 
-    change_rows = [0, 1]
-    change_cols = [2, 3]
+    change_rows_F = [0, 1]
+    change_cols_F = [2, 3]
 
-    F[change_rows, change_cols] = dt
+    F[change_rows_F, change_cols_F] = dt
 
-    return F
+    B = np.zeros((4, 2), dtype=float)
+
+    change_rows_B = [0, 1, 2, 3]
+    change_cols_B = [0, 1, 0, 1]
+
+    B[change_rows_B, change_cols_B] = dt
+
+    return F, B
