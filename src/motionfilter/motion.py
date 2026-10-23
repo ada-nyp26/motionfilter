@@ -22,7 +22,17 @@ def motion_matrices(dt):
     B: numpy.ndarray
         Shape (4,2) zero matrix with indicies [0][0], [1][1], [2][0], [3][1] to
         be replaced by dt.
+
+    Raises
+    ------
+    ValueError
+        If dt is invalid.
+        Non-positive or finite, NaN value or non-scalar (ie a list of values).
     """
+
+    # Checks for dt value and raise ValueError when invalid
+    if np.ndim(dt) != 0 or dt <= 0 or not np.isfinite(dt):
+        raise ValueError('dt must be a positive integer or finite')
 
     F = np.identity(4)
 
