@@ -83,3 +83,18 @@ class TestMotionMatrices:
         """Check dt value error is raised if dt is invalid"""
         with pytest.raises(ValueError):
             motion_matrices(dt)
+
+
+class TestGenerateAccelerationNoise:
+    """Tests for generate_acceleration_noise() in motion.py."""
+
+    def test_vector_shape_type(self):
+        """Check vector shape and type is correct"""
+
+        scale = 0.5
+        rng = np.random.default_rng(42)
+
+        acceleration_noise = generate_acceleration_noise(scale, rng)
+
+        assert acceleration_noise.shape == (2,)
+        assert acceleration_noise.dtype == np.float64
